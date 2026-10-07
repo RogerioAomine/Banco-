@@ -1,0 +1,313 @@
+Sistema Bancário em Python
+
+Consegui desenvolver um pequeno sistema de banco utilizando Python. O objetivo do projeto foi praticar alguns conceitos básicos da linguagem, como dicionários, listas, funções, condicionais, loops e entrada de dados pelo usuário.
+
+1. Criando a conta
+
+Comecei criando um dicionário chamado conta, que possui três informações:
+
+conta = {
+    "titular": "João",
+    "saldo": 1000,
+    "historico": []
+}
+
+Cada informação possui uma chave e um valor:
+
+"titular" → chave que armazena o nome do titular.
+"saldo" → chave que armazena o dinheiro disponível na conta.
+"historico" → chave que armazena uma lista com as movimentações da conta.
+
+O historico começa como uma lista vazia [], porque inicialmente a conta ainda não possui nenhuma movimentação.
+
+Podemos imaginar isso como uma pessoa abrindo uma conta no banco:
+
+Titular: João
+Saldo: R$ 1.000
+Histórico: Nenhuma movimentação
+2. Criando o menu
+
+Depois criei a função menu():
+
+def menu(conta):
+
+Essa função recebe o dicionário conta como argumento.
+
+Dentro dela, criei um menu com as opções disponíveis:
+
+1 - Consultar Saldo
+2 - Depositar
+3 - Sacar
+4 - Histórico
+5 - Sair
+
+Também utilizei um while True, que permite manter o menu funcionando até que o usuário escolha a opção de sair.
+
+while True:
+    escolha = int(input("Digite a sua:"))
+
+O input() recebe a escolha do usuário e o int() transforma essa entrada em um número inteiro.
+
+Depois utilizei if e elif para verificar qual opção foi escolhida.
+
+if escolha == 1:
+    consultar_saldo(conta)
+elif escolha == 2:
+    Depositar(conta)
+elif escolha == 3:
+    Sacar(conta)
+elif escolha == 4:
+    Historico(conta)
+elif escolha == 5:
+    print("Saindo do programa!")
+    break
+
+Cada opção chama uma função diferente.
+
+Opções:
+
+1 - Consultar saldo
+
+Mostra as informações da conta.
+
+2 - Depositar
+
+Permite adicionar dinheiro ao saldo.
+
+3 - Sacar
+
+Permite retirar dinheiro da conta, desde que exista saldo suficiente.
+
+4 - Histórico
+
+Mostra as movimentações realizadas.
+
+5 - Sair
+
+Utiliza break para interromper o while e encerrar o menu.
+
+3. Consultando o saldo
+
+Para consultar as informações da conta, criei a função:
+
+def consultar_saldo(conta):
+
+Dentro dela, utilizo as chaves do dicionário para acessar seus valores:
+
+conta["titular"]
+conta["saldo"]
+conta["historico"]
+
+Por exemplo:
+
+conta["titular"]
+
+significa que estou acessando o valor associado à chave "titular".
+
+Como temos:
+
+"titular": "João"
+
+o resultado será:
+
+João
+
+O mesmo acontece com:
+
+conta["saldo"]
+
+que retorna:
+
+1000
+
+E:
+
+conta["historico"]
+
+retorna a lista com as movimentações.
+
+4. Entendendo chave e valor
+
+No dicionário:
+
+conta = {
+    "titular": "João",
+    "saldo": 1000,
+    "historico": []
+}
+
+temos uma estrutura de chave e valor.
+
+Por exemplo:
+
+"titular": "João"
+"titular" → chave
+"João" → valor
+: → separa a chave do valor
+
+Outro exemplo:
+
+"saldo": 1000
+"saldo" → chave
+1000 → valor
+
+Por isso podemos acessar o valor utilizando:
+
+conta["saldo"]
+5. Depositando dinheiro
+
+Para realizar um depósito, criei a função:
+
+def Depositar(conta):
+
+Primeiro solicito ao usuário o valor que deseja depositar:
+
+valor_depositar = int(input("Qual seria o valor a depositar:"))
+
+Depois criei uma condição para impedir valores menores ou iguais a zero:
+
+if valor_depositar > 0:
+
+Se o valor for válido, adiciono o dinheiro ao saldo:
+
+conta["saldo"] += valor_depositar
+
+O operador += é uma forma reduzida de escrever:
+
+conta["saldo"] = conta["saldo"] + valor_depositar
+
+Por exemplo:
+
+Saldo atual: R$ 1.000
+Depósito:    R$   500
+--------------------
+Novo saldo:  R$ 1.500
+
+Depois adiciono o valor do depósito ao histórico:
+
+conta["historico"].append(valor_depositar)
+
+O append() adiciona um novo elemento ao final da lista.
+
+Por exemplo:
+
+[]
+
+Depois de depositar 500:
+
+[500]
+
+Depois de depositar 200:
+
+[500, 200]
+6. Sacando dinheiro
+
+Para realizar um saque, criei a função:
+
+def Sacar(conta):
+
+Primeiro solicito o valor que o usuário deseja retirar:
+
+valor_sacar = int(input("Quanto deseja retira da sua conta:"))
+
+Depois verifico duas condições:
+
+if valor_sacar > conta["saldo"] or valor_sacar <= 0:
+
+O valor não pode:
+
+Ser maior que o saldo disponível.
+Ser igual a zero.
+Ser um número negativo.
+
+Por exemplo, se a conta possui:
+
+Saldo: R$ 1.000
+
+não seria possível sacar:
+
+R$ 1.500
+
+porque o valor é maior que o saldo disponível.
+
+Também não seria permitido:
+
+R$ -100
+
+porque o valor é negativo.
+
+Se o valor for válido, retiro o dinheiro:
+
+conta["saldo"] -= valor_sacar
+
+Assim como no depósito, o -= é uma forma reduzida de escrever:
+
+conta["saldo"] = conta["saldo"] - valor_sacar
+
+Depois adiciono o valor retirado ao histórico:
+
+conta["historico"].append(valor_sacar)
+7. Histórico da conta
+
+Por último, criei a função:
+
+def Historico(conta):
+
+Ela verifica se existe alguma movimentação na lista historico:
+
+if conta["historico"]:
+
+Se houver movimentações, elas serão mostradas:
+
+print("Historico do seu saldo:", conta["historico"])
+
+Caso a lista esteja vazia, será exibida uma mensagem informando que não existem movimentações.
+
+O histórico é uma lista dentro do dicionário conta.
+
+A estrutura fica aproximadamente assim:
+
+conta
+│
+├── titular → "João"
+│
+├── saldo → 1000
+│
+└── historico → []
+                  │
+                  ├── 500
+                  ├── 200
+                  └── 100
+8. O que pratiquei neste projeto
+
+Com esse pequeno projeto consegui praticar alguns conceitos importantes de Python:
+
+Variáveis
+Dicionários
+Listas
+Chaves e valores
+Funções
+Argumentos
+if, elif e else
+while
+break
+input()
+Conversão com int()
+Operadores += e -=
+append()
+Comparações
+Operador or
+
+Esse projeto foi desenvolvido como uma forma de praticar Python e entender melhor como diferentes estruturas da linguagem podem trabalhar juntas em um pequeno sistema.
+
+🚀 Próximos passos
+
+Algumas melhorias que pretendo fazer futuramente:
+
+Melhorar o sistema de histórico, identificando se foi depósito ou saque.
+Permitir trabalhar com valores decimais.
+Adicionar tratamento de erros para entradas inválidas.
+Criar mais de uma conta.
+Adicionar senha ou autenticação.
+Melhorar a organização do código.
+Criar uma interface para o sistema.
