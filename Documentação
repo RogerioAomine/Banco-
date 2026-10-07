@@ -298,16 +298,5 @@ append()
 Comparações
 Operador or
 
-Esse projeto foi desenvolvido como uma forma de praticar Python e entender melhor como diferentes estruturas da linguagem podem trabalhar juntas em um pequeno sistema.
-
-🚀 Próximos passos
-
-Algumas melhorias que pretendo fazer futuramente:
-
-Melhorar o sistema de histórico, identificando se foi depósito ou saque.
-Permitir trabalhar com valores decimais.
-Adicionar tratamento de erros para entradas inválidas.
-Criar mais de uma conta.
-Adicionar senha ou autenticação.
-Melhorar a organização do código.
+Esse projeto foi desenvolvido como uma forma de praticar Python e entender melhor como diferentes estruturas da linguagem podem trabalhar juntas em um pequeno sistema ou em grandes sistemas.
 Criar uma interface para o sistema.
